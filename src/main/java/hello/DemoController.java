@@ -26,8 +26,11 @@ public class DemoController {
 
                 System.out.println("Creating object");
                 Vector v = new Vector();
-                int one_mega = 1048576;
-                int one_kil = 1048576/10;
+
+
+                int one_kil = 1024;
+                int one_mega = one_kil * 1024;
+                int one_giga= one_mega*1024;
                 int obj_size= one_mega;
                 while (true) {
                     byte b[] = new byte[obj_size];
@@ -38,25 +41,28 @@ public class DemoController {
                     System.out.println("total memory: " + rt.totalMemory());
                     System.out.println("gap between max and total memory: " +  (rt.maxMemory() - rt.totalMemory()));
 
-                    if(rt.totalMemory() < 1048576000*5 ){
+                    if(rt.totalMemory() > 5*one_giga ){
+                        System.out.println("App used 5G so change object size to 10 kilobyte");
                         try {
-                            Thread.sleep(1);
-                            obj_size=one_kil;
+                            Thread.sleep(3);
+                            obj_size=one_kil*10;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
 
-                    if(rt.freeMemory() < 104857600 ){
+                    if(rt.freeMemory() < 100*one_mega ){
+                        System.out.println("Free memory is under 100M so give 3sec to increase heap");
                         try {
-                            Thread.sleep(1);
+                            Thread.sleep(3);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-                    if(rt.maxMemory() -rt.totalMemory() < 104857600 ){
+                    if(rt.maxMemory() -rt.totalMemory() < 100*one_mega ){
+                        System.out.println("App almost reach to max memory so change object size to 1 kilobyte");
                         try {
-                            Thread.sleep(1);
+                            Thread.sleep(3);
                             obj_size=one_kil;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
