@@ -38,7 +38,7 @@ public class DemoController {
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
 
-                    if(rt.freeMemory() > 3*one_giga ){
+                    if(rt.freeMemory() < 3*one_giga ){
                         System.out.println("Free memory is under 3G so change object size to 10 kilobyte");
                         try {
                             Thread.sleep(3);
@@ -49,7 +49,7 @@ public class DemoController {
                     }
 
 
-                    if(rt.freeMemory() > 2*one_giga ){
+                    if(rt.freeMemory() < 2*one_giga ){
                         System.out.println("Free memory is under 2G so change object size to 5 kilobyte");
                         try {
                             Thread.sleep(3);
