@@ -27,7 +27,7 @@ public class DemoController {
                 System.out.println("Creating object");
                 Vector v = new Vector();
                 int one_mega = 1048576;
-                int thirty_kil = 1048576/3;
+                int one_kil = 1048576/10;
                 int obj_size= one_mega;
                 while (true) {
                     byte b[] = new byte[obj_size];
@@ -37,6 +37,16 @@ public class DemoController {
                     System.out.println("max memory: " + rt.maxMemory());
                     System.out.println("total memory: " + rt.totalMemory());
                     System.out.println("gap between max and total memory: " +  (rt.maxMemory() - rt.totalMemory()));
+
+                    if(rt.totalMemory() < 1048576000*5 ){
+                        try {
+                            Thread.sleep(1);
+                            obj_size=one_kil;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     if(rt.freeMemory() < 104857600 ){
                         try {
                             Thread.sleep(1);
