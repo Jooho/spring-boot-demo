@@ -13,9 +13,20 @@ public class DemoController {
 
     @RequestMapping("/leak")
     public void populateObjects(){
-        while(true){
-            String a = new String();
-        }
+
+
+        Runnable myRunnable = new Runnable(){
+
+            public void run(){
+                System.out.println("Creating object");
+                while(true){
+                    String a = new String();
+                }
+            }
+        };
+
+        Thread thread = new Thread(myRunnable);
+        thread.start();
     }
 
 
