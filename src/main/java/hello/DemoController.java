@@ -39,7 +39,7 @@ public class DemoController {
                     System.out.println("free memory: " + rt.freeMemory());
 
                     if(rt.freeMemory() < 300*one_mega ){
-                        System.out.println("Free memory is under 700M so change object size to 100 kilobyte");
+                        System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil*100;
@@ -50,7 +50,7 @@ public class DemoController {
 
 
                     if(rt.freeMemory() < 100*one_mega ){
-                        System.out.println("Free memory is under 500M so change object size to 10 kilobyte");
+                        System.out.println("Free memory is under 100M so change object size to 10 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil*10;
@@ -60,7 +60,7 @@ public class DemoController {
                     }
 
                     if(rt.freeMemory() < 10*one_mega ){
-                        System.out.println("Free memory is under 100M  so change object size to 1 kilobyte");
+                        System.out.println("Free memory is under 10M  so change object size to 1 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil;
