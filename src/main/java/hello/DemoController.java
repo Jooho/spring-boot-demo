@@ -34,7 +34,16 @@ public class DemoController {
                     v.add(b);
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
+                    System.out.println("free memory: " + rt.maxMemory());
+                    System.out.println("free memory: " + rt.totalMemory());
                     if(rt.freeMemory() < 104857600 ){
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(rt.maxMemory() -rt.totalMemory() < 104857600 ){
                         try {
                             Thread.sleep(3000);
                             obj_size=thirty_kil;
