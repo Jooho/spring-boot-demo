@@ -38,8 +38,19 @@ public class DemoController {
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
 
-                    if(rt.freeMemory() < 3*one_giga ){
-                        System.out.println("Free memory is under 3G so change object size to 10 kilobyte");
+                    if(rt.freeMemory() < 700*one_mega ){
+                        System.out.println("Free memory is under 700M so change object size to 100 kilobyte");
+                        try {
+                            Thread.sleep(3);
+                            obj_size=one_kil*100;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    if(rt.freeMemory() < 500*one_mega ){
+                        System.out.println("Free memory is under 500M so change object size to 10 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil*10;
@@ -48,19 +59,8 @@ public class DemoController {
                         }
                     }
 
-
-                    if(rt.freeMemory() < 2*one_giga ){
-                        System.out.println("Free memory is under 2G so change object size to 5 kilobyte");
-                        try {
-                            Thread.sleep(3);
-                            obj_size=one_kil*5;
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    if(rt.freeMemory() < 1*one_giga ){
-                        System.out.println("Free memory is under 1G  so change object size to 1 kilobyte");
+                    if(rt.freeMemory() < 100*one_mega ){
+                        System.out.println("Free memory is under 100M  so change object size to 1 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil;
