@@ -36,7 +36,7 @@ public class DemoController {
                     System.out.println("free memory: " + rt.freeMemory());
                     System.out.println("max memory: " + rt.maxMemory());
                     System.out.println("total memory: " + rt.totalMemory());
-                    System.out.println("gap between max and total memory: " +  (rt.maxMemory() - rt.totalMemory());
+                    System.out.println("gap between max and total memory: " +  (rt.maxMemory() - rt.totalMemory()));
                     if(rt.freeMemory() < 104857600 ){
                         try {
                             Thread.sleep(1);
