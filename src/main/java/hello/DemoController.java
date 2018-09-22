@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.stream.IntStream;
 
 @RestController
@@ -23,15 +24,18 @@ public class DemoController {
             public void run(){
 
                 System.out.println("Creating object");
-                while(true){
-                    ArrayList list = new ArrayList(100);
-                    String a = new String();
-                    System.out.println(i++);
-                }
+                    Vector v = new Vector();
+                    while (true)
+                    {
+                        byte b[] = new byte[1048576];
+                        v.add(b);
+                        Runtime rt = Runtime.getRuntime();
+                        System.out.println( "free memory: " + rt.freeMemory() );
+                    }
             }
         };
 
-        IntStream.range(0, 10000).parallel().forEach(
+        IntStream.range(0, 10).parallel().forEach(
                 nbr -> {
                     try {
                         Thread thread = new Thread(myRunnable);
