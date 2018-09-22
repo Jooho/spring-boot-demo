@@ -9,47 +9,50 @@ import java.util.stream.IntStream;
 
 @RestController
 public class DemoController {
-    int i=0;
+    int i = 0;
+
     @RequestMapping("/hello")
-    public String index(){
+    public String index() {
         return "Hello World!";
     }
 
     @RequestMapping("/leak")
-    public String populateObjects(){
+    public String populateObjects() {
 
 
-        Runnable myRunnable = new Runnable(){
+        Runnable myRunnable = new Runnable() {
 
-            public void run(){
+            public void run() {
 
                 System.out.println("Creating object");
-                    Vector v = new Vector();
-                    while (true)
-                    {
-                        byte b[] = new byte[1048576];
-                        v.add(b);
-                        Runtime rt = Runtime.getRuntime();
-                        System.out.println( "free memory: " + rt.freeMemory() );
+                Vector v = new Vector();
+                int one_mega = 1048576;
+                int thirty_kil = 1048576/3;
+                int obj_size= one_mega;
+                while (true) {
+                    byte b[] = new byte[obj_size];
+                    v.add(b);
+                    Runtime rt = Runtime.getRuntime();
+                    System.out.println("free memory: " + rt.freeMemory());
+                    if(rt.freeMemory() < 104857600 ){
+                        try {
+                            Thread.sleep(3000);
+                            obj_size=thirty_kil;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                }
             }
         };
 
-        IntStream.range(0, 10).parallel().forEach(
-                nbr -> {
-                    try {
-                        Thread thread = new Thread(myRunnable);
-                        thread.start();
-                    } catch (Exception ex) {}
-                    System.out.println(nbr);
-                }
-        );
 
+        Thread thread = new Thread(myRunnable);
+        thread.start();
 
 
         return "Generating Object! Use a lot of CPU/Memory";
     }
-
 
 
 }
