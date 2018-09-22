@@ -37,12 +37,9 @@ public class DemoController {
                     v.add(b);
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
-                    System.out.println("max memory: " + rt.maxMemory());
-                    System.out.println("total memory: " + rt.totalMemory());
-                    System.out.println("gap between max and total memory: " +  (rt.maxMemory() - rt.totalMemory()));
 
-                    if(rt.totalMemory() > 5*one_giga ){
-                        System.out.println("App used 5G so change object size to 10 kilobyte");
+                    if(rt.freeMemory() > 3*one_giga ){
+                        System.out.println("Free memory is under 3G so change object size to 10 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil*10;
@@ -51,16 +48,19 @@ public class DemoController {
                         }
                     }
 
-                    if(rt.freeMemory() < 100*one_mega ){
-                        System.out.println("Free memory is under 100M so give 3sec to increase heap");
+
+                    if(rt.freeMemory() > 2*one_giga ){
+                        System.out.println("Free memory is under 2G so change object size to 5 kilobyte");
                         try {
                             Thread.sleep(3);
+                            obj_size=one_kil*5;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-                    if(rt.maxMemory() -rt.totalMemory() < 100*one_mega ){
-                        System.out.println("App almost reach to max memory so change object size to 1 kilobyte");
+
+                    if(rt.freeMemory() < 1*one_giga ){
+                        System.out.println("Free memory is under 1G  so change object size to 1 kilobyte");
                         try {
                             Thread.sleep(3);
                             obj_size=one_kil;
@@ -68,6 +68,7 @@ public class DemoController {
                             e.printStackTrace();
                         }
                     }
+
                 }
             }
         };
