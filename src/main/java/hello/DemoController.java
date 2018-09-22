@@ -57,7 +57,7 @@ public class DemoController {
                     if(rt.maxMemory() -rt.totalMemory() < 104857600 ){
                         try {
                             Thread.sleep(1);
-                            obj_size=thirty_kil;
+                            obj_size=one_kil;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
