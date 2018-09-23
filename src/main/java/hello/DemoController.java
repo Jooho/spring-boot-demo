@@ -37,21 +37,21 @@ public class DemoController {
 
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
-                    if (! (rt.freeMemory() < 280 * one_mega)) {
+                    if (rt.freeMemory() > 280 * one_mega) {
                         byte b[] = new byte[obj_size];
                         v.add(b);
                     }else {
-                        System.out.println("Free memory is under 300M so do not create objects");
-                    }
-
-                    if (rt.freeMemory() < 300 * one_mega) {
-                        System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
+                        System.out.println("Free memory is under 280M so do not create objects");
                         try {
-                            Thread.sleep(3);
-                            obj_size = one_kil * 100;
+                            Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    }
+
+                    if (rt.freeMemory() < 300 * one_mega && rt.freeMemory() > 280*one_mega)  {
+                        System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
+                        obj_size = one_kil * 10;
                     }
 
 
