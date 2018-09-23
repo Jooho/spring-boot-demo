@@ -37,7 +37,7 @@ public class DemoController {
 
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
-                    if (! (rt.freeMemory() < 150 * one_mega)) {
+                    if (! (rt.freeMemory() < 280 * one_mega)) {
                         byte b[] = new byte[obj_size];
                         v.add(b);
                     }else {
