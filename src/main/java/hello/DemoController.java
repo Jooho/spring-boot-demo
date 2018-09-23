@@ -116,7 +116,7 @@ public class DemoController {
 
         System.out.println("Loading CPU");
         int numCore = 4;
-        int numThreadsPerCore = 2;
+        int numThreadsPerCore = 4;
         for (int i = 0; i < numCore * numThreadsPerCore; i++) {
             thread = new Thread(myRunnable);
             thread.start();
