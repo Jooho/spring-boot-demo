@@ -44,15 +44,15 @@ public class DemoController {
                         System.out.println("Free memory is under 300M so do not create objects");
                     }
 
-//                    if (rt.freeMemory() < 300 * one_mega) {
-//                        System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
-//                        try {
-//                            Thread.sleep(3);
-//                            obj_size = one_kil * 100;
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
+                    if (rt.freeMemory() < 300 * one_mega) {
+                        System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
+                        try {
+                            Thread.sleep(3);
+                            obj_size = one_kil * 100;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
 //                    if (rt.freeMemory() < 100 * one_mega) {
