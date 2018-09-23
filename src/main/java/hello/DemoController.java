@@ -37,7 +37,7 @@ public class DemoController {
 
                     Runtime rt = Runtime.getRuntime();
                     System.out.println("free memory: " + rt.freeMemory());
-                    if (rt.freeMemory() > 280 * one_mega) {
+                    if (rt.freeMemory() > 200 * one_mega) {
                         byte b[] = new byte[obj_size];
                         v.add(b);
                     }else {
@@ -49,7 +49,7 @@ public class DemoController {
                         }
                     }
 
-                    if (rt.freeMemory() < 300 * one_mega && rt.freeMemory() > 280*one_mega)  {
+                    if (rt.freeMemory() < 250 * one_mega && rt.freeMemory() > 200*one_mega)  {
                         System.out.println("Free memory is under 300M so change object size to 100 kilobyte");
                         obj_size = one_kil * 10;
                     }
