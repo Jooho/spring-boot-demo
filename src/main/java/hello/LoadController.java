@@ -8,7 +8,7 @@ import java.util.Vector;
 import java.util.stream.IntStream;
 
 @RestController
-public class DemoController {
+public class LoadController {
 
 
     @RequestMapping("/hello")
