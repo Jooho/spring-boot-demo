@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 public class AuthController {
     boolean misbehaveFlag = false;
@@ -16,7 +18,7 @@ public class AuthController {
         if (!misbehaveFlag) {
             if (timeoutFlag) {
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(TimeUnit.SECONDS.toMillis(5));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
