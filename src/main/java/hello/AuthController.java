@@ -43,7 +43,7 @@ public class AuthController {
 
     @RequestMapping("/recover")
     public ResponseEntity recover() {
-        timeoutFlag = false;
+        misbehaveFlag = false;
         String msg = "Misbehave is disabled: /auth will return right response";
         System.out.println(msg);
         return new ResponseEntity(msg, HttpStatus.OK);
