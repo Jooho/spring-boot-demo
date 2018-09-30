@@ -25,7 +25,7 @@ public class AuthController {
             }
 
             System.out.println("User(" + id + ") -" + " get auth");
-            return new ResponseEntity("Auth OK", HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity("Auth OK", HttpStatus.OK);
         } else {
             String msg = "Misbehave is enabled: so it returns 503 error";
             System.out.println(msg);
@@ -38,7 +38,7 @@ public class AuthController {
         misbehaveFlag = true;
         String msg = "Misbehave is enabled: /auth will return 503 error";
         System.out.println(msg);
-        return new ResponseEntity(msg, HttpStatus.SERVICE_UNAVAILABLE);
+        return new ResponseEntity(msg, HttpStatus.OK);
     }
 
     @RequestMapping("/recover")
