@@ -15,11 +15,7 @@ public class Application {
     public static void main(String[] args) {
 
 
-        SpringApplication app =  new SpringApplication(Application.class);
-        app.setDefaultProperties(Collections
-                .singletonMap("server.address","127.0.0.1"));
-        app.run(args);
-
+        SpringApplication.run(Application.class, args);
     }
 
 
