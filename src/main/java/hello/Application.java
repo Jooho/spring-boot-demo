@@ -7,13 +7,21 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+
+
+        SpringApplication app =  new SpringApplication(Application.class);
+        app.setDefaultProperties(Collections
+                .singletonMap("server.address","127.0.0.1"));
+        app.run(args);
+
     }
+
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
