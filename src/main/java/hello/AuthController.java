@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -15,6 +16,14 @@ public class AuthController {
 
     @RequestMapping("/auth")
     public ResponseEntity auth(@RequestParam String id) {
+        InetAddress ip;
+        String hostname = "";
+        try {
+            ip = InetAddress.getLocalHost();
+            hostname = ip.getHostName();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         if (!misbehaveFlag) {
             if (timeoutFlag) {
                 try {
@@ -25,11 +34,11 @@ public class AuthController {
             }
 
             System.out.println("User(" + id + ") -" + " get auth");
-            return new ResponseEntity("Auth OK", HttpStatus.OK);
+            return new ResponseEntity(hostname + ": Auth OK", HttpStatus.OK);
         } else {
             String msg = "Misbehave is enabled: so it returns 503 error";
             System.out.println(msg);
-            return new ResponseEntity("Service is not unavailable", HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity(hostname + ": Service is not unavailable", HttpStatus.SERVICE_UNAVAILABLE);
         }
     }
 
