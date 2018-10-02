@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class AuthController {
     boolean misbehaveFlag = false;
     boolean timeoutFlag = false;
+    boolean longTaskFlag = false;
+
 
     @RequestMapping("/auth")
     public ResponseEntity auth(@RequestParam String id) {
@@ -25,7 +27,7 @@ public class AuthController {
             ex.printStackTrace();
         }
         if (!misbehaveFlag) {
-            if (timeoutFlag) {
+            if (longTaskFlag) {
                 try {
                     Thread.sleep(TimeUnit.SECONDS.toMillis(5));
                 } catch (InterruptedException e) {
@@ -50,8 +52,8 @@ public class AuthController {
         return new ResponseEntity(msg, HttpStatus.OK);
     }
 
-    @RequestMapping("/recover")
-    public ResponseEntity recover() {
+    @RequestMapping("/misbehave/off")
+    public ResponseEntity misbehaveOff() {
         misbehaveFlag = false;
         String msg = "Misbehave is disabled: /auth will return right response";
         System.out.println(msg);
@@ -60,19 +62,20 @@ public class AuthController {
     }
 
 
-    @RequestMapping("/timeout")
-    public ResponseEntity timeout() {
-        timeoutFlag = true;
-        String msg = "Timeout is enabled: /auth will return right response after 5 Secs";
+
+    @RequestMapping("/longtask")
+    public ResponseEntity longTask() {
+        longTaskFlag = true;
+        String msg = "Long task is enabled: /auth will return right response after 5 Secs";
         System.out.println(msg);
         return new ResponseEntity(msg, HttpStatus.OK);
 
     }
 
-    @RequestMapping("/timeout-off")
-    public ResponseEntity timeoutOff() {
-        timeoutFlag = false;
-        String msg = "Timeout is disabled: /auth will return right response";
+    @RequestMapping("/longtask/off")
+    public ResponseEntity longTaskOff() {
+        longTaskFlag = false;
+        String msg = "Long task is disabled: /auth will return right response";
         System.out.println(msg);
         return new ResponseEntity(msg, HttpStatus.OK);
 
