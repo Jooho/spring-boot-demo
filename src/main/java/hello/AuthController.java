@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class AuthController {
     boolean misbehaveFlag = false;
-    boolean timeoutFlag = false;
     boolean longTaskFlag = false;
 
 
